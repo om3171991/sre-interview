@@ -1,0 +1,6 @@
+FROM python
+RUN pip3 install boto3  mysql.connector && mkdir -p /opt
+WORKDIR /opt
+COPY generator.py /opt/generator.py
+COPY msg_consumer_app.py /opt/msg_consumer_app.py
+CMD /bin/bash

@@ -1,7 +1,20 @@
 version: '2.2'
 
 services:
-
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'db'
+      MYSQL_USER: 'root'
+      MYSQL_PASSWORD: 'root123'
+      MYSQL_ROOT_PASSWORD: 'root123'
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - my-db:/var/lib/mysql  
   interview-localstack:
     image: localstack/localstack
     ports:
@@ -14,4 +27,5 @@ services:
       - DOCKER_HOST=unix:///var/run/docker.sock
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
-
+volumes:
+  my-db:
